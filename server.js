@@ -51,7 +51,9 @@ app.get('/authors', (_, res) => {
 })
 
 app.get('/book_dtls', (req, res) => {
-  BookDetails.show_book_dtls(res, req.query.id);
+  const bookId = req.query.id;
+  const sanitized_id = bookId.replace(/[^\w\s]/gi, '');
+  BookDetails.show_book_dtls(res, sanitized_id);
 })
 
 app.post('/newbook', (req, res) => {
